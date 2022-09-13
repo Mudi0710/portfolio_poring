@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
     rel="stylesheet">
-  <title>RO 小遊戲</title>
+  <title>Hunt Poring</title>
   <style>
     * {
       margin: 0;
@@ -63,8 +63,8 @@
     }
 
     #game .angelporing {
-      width: 130px;
-      height: 100px;
+      width: 65px;
+      height: 50px;
       z-index: 1;
     }
 
@@ -90,8 +90,8 @@
 
     .angelporingDIE,
     .angelporingDIEpic {
-      width: 130px;
-      height: 100px;
+      width: 65px;
+      height: 50px;
       pointer-events: none;
       z-index: 0;
     }
@@ -143,7 +143,7 @@
       line-height: 30px;
       border-radius: 5px;
       box-shadow:
-        1px 1px 2px rgba(0, 0, 0, .4),
+        3px 3px 3px rgba(0, 0, 0, .4),
         -1px -1px 4px rgba(236, 236, 243, .9),
         inset 0 0 0 rgba(236, 236, 243, .9),
         inset 0 0 0 rgba(0, 0, 0, .4);
@@ -161,7 +161,7 @@
         0 0 0 rgba(0, 0, 0, .4),
         0 0 0 rgba(236, 236, 243, .9),
         inset -1px -1px 4px rgba(236, 236, 243, .9),
-        inset 1px 1px 2px rgba(0, 0, 0, .4);
+        inset 3px 3px 3px rgba(0, 0, 0, .4);
     }
 
     /* 設定武器選擇器 */
@@ -181,7 +181,7 @@
       background: rgba(255, 255, 255, 1);
       border-radius: 5px;
       box-shadow:
-        1px 1px 2px rgba(0, 0, 0, .4),
+        3px 3px 3px rgba(0, 0, 0, .4),
         -1px -1px 4px rgba(236, 236, 243, .9),
         inset 0 0 0 rgba(236, 236, 243, .9),
         inset 0 0 0 rgba(0, 0, 0, .4);
@@ -191,15 +191,6 @@
       cursor: pointer;
       filter:
         drop-shadow(0 0 1px white) drop-shadow(0 0 2px white) drop-shadow(0 0 3px white) drop-shadow(0 0 4px white);
-    }
-
-    #sticklists img:focus {
-      background: rgb(236, 236, 243);
-      box-shadow:
-        0 0 0 rgba(0, 0, 0, .4),
-        0 0 0 rgba(236, 236, 243, .9),
-        inset -1px -1px 4px rgba(236, 236, 243, .9),
-        inset 1px 1px 2px rgba(0, 0, 0, .4);
     }
 
     /* 改變button預設值 */
@@ -218,7 +209,7 @@
       line-height: 30px;
       border-radius: 5px;
       box-shadow:
-        1px 1px 2px rgba(0, 0, 0, .3),
+        3px 3px 3px rgba(0, 0, 0, .3),
         -1px -1px 4px rgba(236, 236, 243, .9),
         inset 0 0 0 rgba(236, 236, 243, .9),
         inset 0 0 0 rgba(0, 0, 0, .4);
@@ -300,22 +291,27 @@
   <!-- SweetAlert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
+    // 總分
     let score = 0
+    // 遊戲時間
     let countdown = 30
     let timer = 0
     let control = 0
+    // 辨別武器
+    let mouse = 1
 
+    // 波利移動 function
     function move(kingporing) {
-      const top = Math.round(Math.random() * 50) + '%'
-      const left = Math.round(Math.random() * 70) + '%'
-      kingporing.stop().animate({ top, left }, 3500, function () {
+      const top = Math.round(Math.random() * 38) + '%'
+      const left = Math.round(Math.random() * 55) + '%'
+      kingporing.stop().animate({ top, left }, 5000, function () {
         move(kingporing)
       })
     }
     function move(angelporing) {
-      const top = Math.round(Math.random() * 90) + '%'
-      const left = Math.round(Math.random() * 90) + '%'
-      angelporing.stop().animate({ top, left }, 3500, function () {
+      const top = Math.round(Math.random() * 80) + '%'
+      const left = Math.round(Math.random() * 80) + '%'
+      angelporing.stop().animate({ top, left, }, 'fast', function () {
         move(angelporing)
       })
     }
@@ -334,6 +330,7 @@
       })
     }
 
+    // 遊戲開始
     $('#btn-start').click(function () {
       $(function () {
         $('#music')[0].play();
@@ -348,29 +345,30 @@
         countdown--
         $('#text-time').text(countdown)
 
+        // 生成波利
         const random = Math.round(Math.random() * 9)
-        if (random > 7.5 && $('#game .kingporing').length < 3) {
-          const top = Math.round(Math.random() * 50) + '%'
-          const left = Math.round(Math.random() * 70) + '%'
+        if (random > 7.5 && $('#game .kingporing').length < 2) {
+          const top = Math.round(Math.random() * 38) + '%'
+          const left = Math.round(Math.random() * 55) + '%'
           const kingporing = $(`<img src="./images/king_poring.gif" class="kingporing" style="top: ${top}; left: ${left}">`)
           $('#game').append(kingporing)
           move(kingporing)
         }
-        if (random > 6 && $('#game .angelporing').length < 5) {
+        if (random > 6 && $('#game .angelporing').length < 3) {
           const top = Math.round(Math.random() * 90) + '%'
           const left = Math.round(Math.random() * 90) + '%'
           const angelporing = $(`<img src="./images/angeling.gif" class="angelporing" style="top: ${top}; left: ${left}">`)
           $('#game').append(angelporing)
           move(angelporing)
         }
-        if (random > 7 && $('#game .devilporing').length < 5) {
+        if (random > 7 && $('#game .devilporing').length < 3) {
           const top = Math.round(Math.random() * 90) + '%'
           const left = Math.round(Math.random() * 90) + '%'
           const devilporing = $(`<img src="./images/deviling.gif" class="devilporing" style="top: ${top}; left: ${left}">`)
           $('#game').append(devilporing)
           move(devilporing)
         }
-        if (random > 2 && $('#game .poring').length < 7) {
+        if (random > 2 && $('#game .poring').length < 5) {
           const top = Math.round(Math.random() * 90) + '%'
           const left = Math.round(Math.random() * 90) + '%'
           const poring = $(`<img src="./images/poring.gif" class="poring" style="top: ${top}; left: ${left}">`)
@@ -394,6 +392,8 @@
           $('#game .poringDIEpic').remove()
           $('#btn-start').attr('disabled', false)
           Swal.fire({
+            heightAuto: false,
+            allowOutsideClick: false,
             title: `你的擊殺分數為 ${score} 分！`,
             imageUrl: './images/victory.png'
           })
@@ -401,78 +401,158 @@
       }, 1000)
     })
 
+    // 獵捕國王波利計分/分數
+    let kill = 0
     $('#game').on('click', '.kingporing', function () {
-      $(this).attr('src', './images/king_poringDIEonce.gif')
-      $(this).removeClass('kingporing').addClass('kingporingDIE')
-      $('.kingporingDIE').stop()
-      control++
-      $('.kingporingDIE').addClass('kingporingDIEpic')
-      if (control >= score) {
-        kingporingtimer = setInterval(function () {
-          $('.kingporingDIEpic').attr('src', './images/king_poringDIEpic.png')
-        }, 1000)
+      kill++
+      if (kill >= 2) {
+        $(this).attr('src', './images/king_poringDIEonce.gif')
+        $(this).removeClass('kingporing').addClass('kingporingDIE')
+        $('.kingporingDIE').stop()
+        control += 3
+        $('.kingporingDIE').addClass('kingporingDIEpic')
+        if (control >= score) {
+          kingporingtimer = setInterval(function () {
+            $('.kingporingDIEpic').attr('src', './images/king_poringDIEpic.png')
+          }, 1000)
+        }
+        score += 3
+        $('#text-score').text(score)
+        kill = 0
       }
-      score++
-      $('#text-score').text(score)
     })
 
+    // 獵捕天使波利計分/分數
     $('#game').on('click', '.angelporing', function () {
       $(this).attr('src', './images/angelingDIEonce.gif')
       $(this).removeClass('angelporing').addClass('angelporingDIE')
       $('.angelporingDIE').stop()
-      control++
+      control += 2
       $('.angelporingDIE').addClass('angelporingDIEpic')
       if (control >= score) {
         angelporingtimer = setInterval(function () {
           $('.angelporingDIEpic').attr('src', './images/angelingDIEpic.png')
         }, 1000)
       }
-      score++
+      score += 2
       $('#text-score').text(score)
     })
 
+    // 獵捕惡魔波利計分/分數
     $('#game').on('click', '.devilporing', function () {
-      $(this).attr('src', './images/devilingDIEonce.gif')
-      $(this).removeClass('devilporing').addClass('devilporingDIE')
-      $('.devilporingDIE').stop()
-      control++
-      $('.devilporingDIE').addClass('devilporingDIEpic')
-      if (control >= score) {
-        devilporingtimer = setInterval(function () {
-          $('.devilporingDIEpic').attr('src', './images/devilingDIEpic.png')
-        }, 1000)
+      // 當武器是慈悲法杖的時候
+      if (mouse === 2) {
+        $(this).attr('src', './images/devilingDIEonce.gif')
+        $(this).removeClass('devilporing').addClass('devilporingDIE')
+        $('.devilporingDIE').stop()
+        control += 2
+        $('.devilporingDIE').addClass('devilporingDIEpic')
+        if (control >= score) {
+          devilporingtimer = setInterval(function () {
+            $('.devilporingDIEpic').attr('src', './images/devilingDIEpic.png')
+          }, 1000)
+        }
+        score++
+        $('#text-score').text(score)
       }
-      score++
-      $('#text-score').text(score)
     })
 
+    // 獵捕波利計分/分數
     $('#game').on('click', '.poring', function () {
       $(this).attr('src', './images/poringDIEonce.gif')
       $(this).removeClass('poring').addClass('poringDIE')
       $('.poringDIE').stop()
-      control++
+      control += 2
       $('.poringDIE').addClass('poringDIEpic')
       if (control >= score) {
         poringtimer = setInterval(function () {
           $('.poringDIEpic').attr('src', './images/poringDIEpic.png')
         }, 1000)
       }
-      score++
+      score += 2
       $('#text-score').text(score)
     })
 
     // 設定武器選擇器
     $('.stick01').click(function () {
       $('#game').css({ "cursor": "url('./images/stick01.png') 0 0, auto" });
+      mouse = 1
+      // 被選擇時
+      $('.stick01').css({
+        'background': 'rgb(236, 236, 243)',
+        'box-shadow': '0 0 0 rgba(0, 0, 0, .4)',
+        'box-shadow': '0 0 0 rgba(236, 236, 243, .9)',
+        'box-shadow': 'inset -1px -1px 4px rgba(236, 236, 243, .9)',
+        'box-shadow': 'inset 3px 3px 3px rgba(0, 0, 0, .4)'
+      })
+      // 其他人
+      $('.stick02, .stick03, .stick04').css({
+        'background': 'rgba(255, 255, 255, 1)',
+        'box-shadow': 'inset 0 0 0 rgba(0, 0, 0, .4)',
+        'box-shadow': 'inset 0 0 0 rgba(236, 236, 243, .9)',
+        'box-shadow': '-1px -1px 4px rgba(236, 236, 243, .9)',
+        'box-shadow': '3px 3px 3px rgba(0, 0, 0, .4)'
+      })
     })
     $('.stick02').click(function () {
       $('#game').css({ "cursor": "url('./images/stick02.png') 0 0, auto" });
+      mouse = 2
+      // 被選擇時
+      $('.stick02').css({
+        'background': 'rgb(236, 236, 243)',
+        'box-shadow': '0 0 0 rgba(0, 0, 0, .4)',
+        'box-shadow': '0 0 0 rgba(236, 236, 243, .9)',
+        'box-shadow': 'inset -1px -1px 4px rgba(236, 236, 243, .9)',
+        'box-shadow': 'inset 3px 3px 3px rgba(0, 0, 0, .4)'
+      })
+      // 其他人
+      $('.stick01, .stick03, .stick04').css({
+        'background': 'rgba(255, 255, 255, 1)',
+        'box-shadow': 'inset 0 0 0 rgba(0, 0, 0, .4)',
+        'box-shadow': 'inset 0 0 0 rgba(236, 236, 243, .9)',
+        'box-shadow': '-1px -1px 4px rgba(236, 236, 243, .9)',
+        'box-shadow': '3px 3px 3px rgba(0, 0, 0, .4)'
+      })
     })
     $('.stick03').click(function () {
       $('#game').css({ "cursor": "url('./images/stick03.png') 0 0, auto" });
+      mouse = 3
+      // 被選擇時
+      $('.stick03').css({
+        'background': 'rgb(236, 236, 243)',
+        'box-shadow': '0 0 0 rgba(0, 0, 0, .4)',
+        'box-shadow': '0 0 0 rgba(236, 236, 243, .9)',
+        'box-shadow': 'inset -1px -1px 4px rgba(236, 236, 243, .9)',
+        'box-shadow': 'inset 3px 3px 3px rgba(0, 0, 0, .4)'
+      })
+      // 其他人
+      $('.stick01, .stick02, .stick04').css({
+        'background': 'rgba(255, 255, 255, 1)',
+        'box-shadow': 'inset 0 0 0 rgba(0, 0, 0, .4)',
+        'box-shadow': 'inset 0 0 0 rgba(236, 236, 243, .9)',
+        'box-shadow': '-1px -1px 4px rgba(236, 236, 243, .9)',
+        'box-shadow': '3px 3px 3px rgba(0, 0, 0, .4)'
+      })
     })
     $('.stick04').click(function () {
       $('#game').css({ "cursor": "url('./images/stick04.png') 0 0, auto" });
+      mouse = 4
+      // 被選擇時
+      $('.stick04').css({
+        'background': 'rgb(236, 236, 243)',
+        'box-shadow': '0 0 0 rgba(0, 0, 0, .4)',
+        'box-shadow': '0 0 0 rgba(236, 236, 243, .9)',
+        'box-shadow': 'inset -1px -1px 4px rgba(236, 236, 243, .9)',
+        'box-shadow': 'inset 3px 3px 3px rgba(0, 0, 0, .4)'
+      })
+      // 其他人
+      $('.stick01, .stick02, .stick03').css({
+        'background': 'rgba(255, 255, 255, 1)',
+        'box-shadow': 'inset 0 0 0 rgba(0, 0, 0, .4)',
+        'box-shadow': 'inset 0 0 0 rgba(236, 236, 243, .9)',
+        'box-shadow': '-1px -1px 4px rgba(236, 236, 243, .9)',
+        'box-shadow': '3px 3px 3px rgba(0, 0, 0, .4)'
+      })
     })
 
     // 設定技能特效
@@ -488,12 +568,12 @@
     });
 
     // 設定音量預設大小
-    $('#music').prop('volume', 0.5);
+    $('#music').prop('volume', 0.3);
     // 自動播放
     // https://www.796t.com/content/1550197449.html
-    // $(function () {
-    //     $('#music')[0].play();
-    //   })
+    $(function () {
+      $('#music')[0].play();
+    })
 
   </script>
 
