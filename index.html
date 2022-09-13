@@ -335,6 +335,9 @@
     }
 
     $('#btn-start').click(function () {
+      $(function () {
+        $('#music')[0].play();
+      })
       $(this).attr('disabled', true)
       score = 0
       $('#text-score').text(score)
@@ -488,9 +491,9 @@
     $('#music').prop('volume', 0.5);
     // 自動播放
     // https://www.796t.com/content/1550197449.html
-    $(function () {
-        $('#music')[0].play();
-      })
+    // $(function () {
+    //     $('#music')[0].play();
+    //   })
 
   </script>
 
