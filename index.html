@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
+    rel="stylesheet">
   <title>RO 小遊戲</title>
   <style>
     * {
@@ -15,12 +16,11 @@
       font-family: 'Noto Sans TC', sans-serif;
     }
 
-
     /* 設定背景 */
     body {
       width: 100vw;
       height: 100vh;
-      background: url('./images/backgroundBlur.png') no-repeat center center/contain;
+      background: url('./images/backgroundBlur.png') no-repeat center center;
     }
 
     /* 設定h3外距 */
@@ -111,8 +111,6 @@
       pointer-events: none;
       z-index: 0;
     }
-
-
 
     /* 設定資訊區 */
     #info {
@@ -291,7 +289,7 @@
       <p>剩餘時間： <span id="text-time">0</span> 秒</p>
       <br>
     </div>
-    <audio id="music" src="./music/streamside.mp3" autoplay loop controls></audio>
+    <audio id="music" src="./music/streamside.mp3" autoplay loop controls preload="metadata"></audio>
   </div>
 
   <!-- jQuery -->
@@ -460,8 +458,6 @@
       $('#text-score').text(score)
     })
 
-
-
     // 設定武器選擇器
     $('.stick01').click(function () {
       $('#game').css({ "cursor": "url('./images/stick01.png') 0 0, auto" });
@@ -489,7 +485,13 @@
     });
 
     // 設定音量預設大小
-    $('#music').prop('volume', 0.1);
+    $('#music').prop('volume', 0.5);
+    // 自動播放
+    // https://www.796t.com/content/1550197449.html
+    $(function () {
+        $('#music')[0].play();
+      })
+
   </script>
 
 </body>
