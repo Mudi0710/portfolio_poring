@@ -134,7 +134,22 @@
       display: block;
     }
 
-    #info .roleselector {
+    #info .roleselector01 {
+      width: 100px;
+      height: 30px;
+      background: rgb(236, 236, 243);
+      display: inline-block;
+      margin: 5px 5px;
+      line-height: 30px;
+      border-radius: 5px;
+      box-shadow:
+        0 0 0 rgba(0, 0, 0, .4),
+        0 0 0 rgba(236, 236, 243, .9),
+        inset -1px -1px 4px rgba(236, 236, 243, .9),
+        inset 3px 3px 3px rgba(0, 0, 0, .4);
+    }
+
+    #info .roleselector02 {
       width: 100px;
       height: 30px;
       background: white;
@@ -149,19 +164,11 @@
         inset 0 0 0 rgba(0, 0, 0, .4);
     }
 
-    #info .roleselector:hover {
+    #info .roleselector01:hover,
+    #info .roleselector02:hover {
       cursor: pointer;
       filter:
         drop-shadow(0 0 1px white) drop-shadow(0 0 2px white) drop-shadow(0 0 3px white) drop-shadow(0 0 4px white);
-    }
-
-    #info .roleselector:active {
-      background: rgb(236, 236, 243);
-      box-shadow:
-        0 0 0 rgba(0, 0, 0, .4),
-        0 0 0 rgba(236, 236, 243, .9),
-        inset -1px -1px 4px rgba(236, 236, 243, .9),
-        inset 3px 3px 3px rgba(0, 0, 0, .4);
     }
 
     /* 設定武器選擇器 */
@@ -191,6 +198,15 @@
       cursor: pointer;
       filter:
         drop-shadow(0 0 1px white) drop-shadow(0 0 2px white) drop-shadow(0 0 3px white) drop-shadow(0 0 4px white);
+    }
+
+    #sticklists .stick01 {
+      background: rgb(236, 236, 243);
+      box-shadow:
+        0 0 0 rgba(0, 0, 0, .4),
+        0 0 0 rgba(236, 236, 243, .9),
+        inset -1px -1px 4px rgba(236, 236, 243, .9),
+        inset 3px 3px 3px rgba(0, 0, 0, .4);
     }
 
     /* 改變button預設值 */
@@ -235,6 +251,14 @@
       width: 1540px;
     }
 
+    .fire {
+      width: 250px;
+      height: 250px;
+      position: absolute;
+      opacity: 0;
+      transition: all linear;
+    }
+
     .flash {
       width: 180px;
       height: 350px;
@@ -253,10 +277,10 @@
     <div id="info">
       <h3>選擇你的角色</h3>
       <label for="role01">
-        <div class="roleselector">男魔法師</div>
+        <div class="roleselector01">男魔法師</div>
       </label>
       <label for="role02">
-        <div class="roleselector">女魔法師</div>
+        <div class="roleselector02">女魔法師</div>
       </label>
       <div class="rolelist">
         <input id="role01" type="radio" name="role" checked>
@@ -556,16 +580,76 @@
     })
 
     // 設定技能特效
-    $('<img class="flash" src="./images/flash_BGclear.gif">').appendTo('#game');
+    $('<img class="fire" src="./images/fire_BGclear.gif">').appendTo('#game');
     $('#game').mousedown(function (e) {
-      let x = e.pageX - 60;
-      let y = e.pageY - 280;
-      $('.flash').offset({ left: x, top: y })
-      $('.flash').css({ "opacity": "1" });
+      let x = e.pageX - 100;
+      let y = e.pageY - 170;
+      $('.fire').offset({ left: x, top: y })
+      $('.fire').css({ "opacity": "1" });
       setTimeout(function () {
-        $('.flash').css('opacity', '0');
-      }, 500);
+        $('.fire').css('opacity', '0');
+      }, 700);
     });
+
+    $('.roleselector01').click(function () {
+      $('#game').empty()
+      $('<img class="fire" src="./images/fire_BGclear.gif">').appendTo('#game');
+      $('#game').mousedown(function (e) {
+        let x = e.pageX - 100;
+        let y = e.pageY - 170;
+        $('.fire').offset({ left: x, top: y })
+        $('.fire').css({ "opacity": "1" });
+        setTimeout(function () {
+          $('.fire').css('opacity', '0');
+        }, 700);
+      });
+      // 被選擇時
+      $('.roleselector01').css({
+        'background': 'rgb(236, 236, 243)',
+        'box-shadow': '0 0 0 rgba(0, 0, 0, .4)',
+        'box-shadow': '0 0 0 rgba(236, 236, 243, .9)',
+        'box-shadow': 'inset -1px -1px 4px rgba(236, 236, 243, .9)',
+        'box-shadow': 'inset 3px 3px 3px rgba(0, 0, 0, .4)'
+      })
+      // 其他人
+      $('.roleselector02').css({
+        'background': 'rgba(255, 255, 255, 1)',
+        'box-shadow': 'inset 0 0 0 rgba(0, 0, 0, .4)',
+        'box-shadow': 'inset 0 0 0 rgba(236, 236, 243, .9)',
+        'box-shadow': '-1px -1px 4px rgba(236, 236, 243, .9)',
+        'box-shadow': '3px 3px 3px rgba(0, 0, 0, .4)'
+      })
+    })
+
+    $('.roleselector02').click(function () {
+      $('#game').empty()
+      $('<img class="flash" src="./images/flash_BGclear.gif">').appendTo('#game');
+      $('#game').mousedown(function (e) {
+        let x = e.pageX - 60;
+        let y = e.pageY - 280;
+        $('.flash').offset({ left: x, top: y })
+        $('.flash').css({ "opacity": "1" });
+        setTimeout(function () {
+          $('.flash').css('opacity', '0');
+        }, 500);
+      });
+      // 被選擇時
+      $('.roleselector02').css({
+        'background': 'rgb(236, 236, 243)',
+        'box-shadow': '0 0 0 rgba(0, 0, 0, .4)',
+        'box-shadow': '0 0 0 rgba(236, 236, 243, .9)',
+        'box-shadow': 'inset -1px -1px 4px rgba(236, 236, 243, .9)',
+        'box-shadow': 'inset 3px 3px 3px rgba(0, 0, 0, .4)'
+      })
+      // 其他人
+      $('.roleselector01').css({
+        'background': 'rgba(255, 255, 255, 1)',
+        'box-shadow': 'inset 0 0 0 rgba(0, 0, 0, .4)',
+        'box-shadow': 'inset 0 0 0 rgba(236, 236, 243, .9)',
+        'box-shadow': '-1px -1px 4px rgba(236, 236, 243, .9)',
+        'box-shadow': '3px 3px 3px rgba(0, 0, 0, .4)'
+      })
+    })
 
     // 設定音量預設大小
     $('#music').prop('volume', 0.3);
