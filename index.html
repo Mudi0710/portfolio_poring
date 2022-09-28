@@ -66,6 +66,22 @@
       width: 65px;
       height: 50px;
       z-index: 1;
+      opacity: 0;
+      animation: invisible 5s 5s linear infinite ;
+    }
+
+    @keyframes invisible {
+      0% {
+        opacity: 0;
+      }
+
+      40% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
     }
 
     #game .devilporing {
@@ -116,7 +132,7 @@
     #info {
       width: calc(1540px - 1280px);
       height: 768px;
-      background: rgba(255, 255, 255, .5);
+      background: rgba(255, 255, 255, .6);
       float: right;
       text-align: center;
     }
@@ -168,7 +184,7 @@
     #info .roleselector02:hover {
       cursor: pointer;
       filter:
-        drop-shadow(0 0 1px white) drop-shadow(0 0 2px white) drop-shadow(0 0 3px white) drop-shadow(0 0 4px white);
+        drop-shadow(0 0 2px lightblue) drop-shadow(0 0 4px lightblue) drop-shadow(0 0 6px lightblue) drop-shadow(0 0 8px lightblue);
     }
 
     /* 設定武器選擇器 */
@@ -185,28 +201,41 @@
     #sticklists img {
       width: 75px;
       height: 100px;
-      background: rgba(255, 255, 255, 1);
-      border-radius: 5px;
-      box-shadow:
-        3px 3px 3px rgba(0, 0, 0, .4),
-        -1px -1px 4px rgba(236, 236, 243, .9),
-        inset 0 0 0 rgba(236, 236, 243, .9),
-        inset 0 0 0 rgba(0, 0, 0, .4);
     }
 
-    #sticklists img:hover {
+    #sticklists .stick01:hover,
+    #sticklists .stick02:hover,
+    #sticklists .stick03:hover,
+    #sticklists .stick04:hover {
       cursor: pointer;
       filter:
-        drop-shadow(0 0 1px white) drop-shadow(0 0 2px white) drop-shadow(0 0 3px white) drop-shadow(0 0 4px white);
+        drop-shadow(0 0 2px lightblue) drop-shadow(0 0 4px lightblue) drop-shadow(0 0 6px lightblue) drop-shadow(0 0 8px lightblue) !important;
+      transform: scale(1.25) !important;
+      transition: 0.3s !important;
     }
 
     #sticklists .stick01 {
-      background: rgb(236, 236, 243);
-      box-shadow:
-        0 0 0 rgba(0, 0, 0, .4),
-        0 0 0 rgba(236, 236, 243, .9),
-        inset -1px -1px 4px rgba(236, 236, 243, .9),
-        inset 3px 3px 3px rgba(0, 0, 0, .4);
+      filter:
+        drop-shadow(0 0 2px yellow) drop-shadow(0 0 4px yellow) drop-shadow(0 0 6px yellow) drop-shadow(0 0 8px yellow);
+      transform: scale(1.25);
+      animation: chooseStick 2.5s infinite linear;
+    }
+
+    @keyframes chooseStick {
+      0% {
+        filter:
+          drop-shadow(0 0 1px yellow) drop-shadow(0 0 2px yellow) drop-shadow(0 0 3px yellow) drop-shadow(0 0 4px yellow);
+      }
+
+      50% {
+        filter:
+          drop-shadow(0 0 12px yellow) drop-shadow(0 0 9px yellow) drop-shadow(0 0 6px yellow) drop-shadow(0 0 3px yellow);
+      }
+
+      100% {
+        filter:
+          drop-shadow(0 0 1px yellow) drop-shadow(0 0 2px yellow) drop-shadow(0 0 3px yellow) drop-shadow(0 0 4px yellow);
+      }
     }
 
     /* 改變button預設值 */
@@ -234,7 +263,7 @@
     #btn-start:hover {
       cursor: pointer;
       filter:
-        drop-shadow(0 0 1px white) drop-shadow(0 0 2px white) drop-shadow(0 0 3px white) drop-shadow(0 0 4px white);
+        drop-shadow(0 0 1px lightblue) drop-shadow(0 0 2px lightblue) drop-shadow(0 0 3px lightblue) drop-shadow(0 0 4px lightblue);
     }
 
     #btn-start:active {
@@ -503,19 +532,21 @@
       mouse = 1
       // 被選擇時
       $('.stick01').css({
-        'background': 'rgb(236, 236, 243)',
-        'box-shadow': '0 0 0 rgba(0, 0, 0, .4)',
-        'box-shadow': '0 0 0 rgba(236, 236, 243, .9)',
-        'box-shadow': 'inset -1px -1px 4px rgba(236, 236, 243, .9)',
-        'box-shadow': 'inset 3px 3px 3px rgba(0, 0, 0, .4)'
+        'filter': 'drop-shadow(0 0 2px yellow)',
+        'filter': 'drop-shadow(0 0 4px yellow)',
+        'filter': 'drop-shadow(0 0 6px yellow)',
+        'filter': 'drop-shadow(0 0 8px yellow)',
+        'transform': 'scale(1.25)',
+        'animation': 'chooseStick 2.5s infinite linear'
       })
       // 其他人
       $('.stick02, .stick03, .stick04').css({
-        'background': 'rgba(255, 255, 255, 1)',
-        'box-shadow': 'inset 0 0 0 rgba(0, 0, 0, .4)',
-        'box-shadow': 'inset 0 0 0 rgba(236, 236, 243, .9)',
-        'box-shadow': '-1px -1px 4px rgba(236, 236, 243, .9)',
-        'box-shadow': '3px 3px 3px rgba(0, 0, 0, .4)'
+        'filter': 'drop-shadow(0 0 2px rgba(0, 0, 0, 0))',
+        'filter': 'drop-shadow(0 0 4px rgba(0, 0, 0, 0))',
+        'filter': 'drop-shadow(0 0 6px rgba(0, 0, 0, 0))',
+        'filter': 'drop-shadow(0 0 8px rgba(0, 0, 0, 0))',
+        'transform': 'scale(1)',
+        'animation': 'none'
       })
     })
     $('.stick02').click(function () {
@@ -523,19 +554,21 @@
       mouse = 2
       // 被選擇時
       $('.stick02').css({
-        'background': 'rgb(236, 236, 243)',
-        'box-shadow': '0 0 0 rgba(0, 0, 0, .4)',
-        'box-shadow': '0 0 0 rgba(236, 236, 243, .9)',
-        'box-shadow': 'inset -1px -1px 4px rgba(236, 236, 243, .9)',
-        'box-shadow': 'inset 3px 3px 3px rgba(0, 0, 0, .4)'
+        'filter': 'drop-shadow(0 0 2px yellow)',
+        'filter': 'drop-shadow(0 0 4px yellow)',
+        'filter': 'drop-shadow(0 0 6px yellow)',
+        'filter': 'drop-shadow(0 0 8px yellow)',
+        'transform': 'scale(1.25)',
+        'animation': 'chooseStick 2.5s infinite linear'
       })
       // 其他人
       $('.stick01, .stick03, .stick04').css({
-        'background': 'rgba(255, 255, 255, 1)',
-        'box-shadow': 'inset 0 0 0 rgba(0, 0, 0, .4)',
-        'box-shadow': 'inset 0 0 0 rgba(236, 236, 243, .9)',
-        'box-shadow': '-1px -1px 4px rgba(236, 236, 243, .9)',
-        'box-shadow': '3px 3px 3px rgba(0, 0, 0, .4)'
+        'filter': 'drop-shadow(0 0 2px rgba(0, 0, 0, 0))',
+        'filter': 'drop-shadow(0 0 4px rgba(0, 0, 0, 0))',
+        'filter': 'drop-shadow(0 0 6px rgba(0, 0, 0, 0))',
+        'filter': 'drop-shadow(0 0 8px rgba(0, 0, 0, 0))',
+        'transform': 'scale(1)',
+        'animation': 'none'
       })
     })
     $('.stick03').click(function () {
@@ -543,19 +576,21 @@
       mouse = 3
       // 被選擇時
       $('.stick03').css({
-        'background': 'rgb(236, 236, 243)',
-        'box-shadow': '0 0 0 rgba(0, 0, 0, .4)',
-        'box-shadow': '0 0 0 rgba(236, 236, 243, .9)',
-        'box-shadow': 'inset -1px -1px 4px rgba(236, 236, 243, .9)',
-        'box-shadow': 'inset 3px 3px 3px rgba(0, 0, 0, .4)'
+        'filter': 'drop-shadow(0 0 2px yellow)',
+        'filter': 'drop-shadow(0 0 4px yellow)',
+        'filter': 'drop-shadow(0 0 6px yellow)',
+        'filter': 'drop-shadow(0 0 8px yellow)',
+        'transform': 'scale(1.25)',
+        'animation': 'chooseStick 2.5s infinite linear'
       })
       // 其他人
       $('.stick01, .stick02, .stick04').css({
-        'background': 'rgba(255, 255, 255, 1)',
-        'box-shadow': 'inset 0 0 0 rgba(0, 0, 0, .4)',
-        'box-shadow': 'inset 0 0 0 rgba(236, 236, 243, .9)',
-        'box-shadow': '-1px -1px 4px rgba(236, 236, 243, .9)',
-        'box-shadow': '3px 3px 3px rgba(0, 0, 0, .4)'
+        'filter': 'drop-shadow(0 0 2px rgba(0, 0, 0, 0))',
+        'filter': 'drop-shadow(0 0 4px rgba(0, 0, 0, 0))',
+        'filter': 'drop-shadow(0 0 6px rgba(0, 0, 0, 0))',
+        'filter': 'drop-shadow(0 0 8px rgba(0, 0, 0, 0))',
+        'transform': 'scale(1)',
+        'animation': 'none'
       })
     })
     $('.stick04').click(function () {
@@ -563,19 +598,21 @@
       mouse = 4
       // 被選擇時
       $('.stick04').css({
-        'background': 'rgb(236, 236, 243)',
-        'box-shadow': '0 0 0 rgba(0, 0, 0, .4)',
-        'box-shadow': '0 0 0 rgba(236, 236, 243, .9)',
-        'box-shadow': 'inset -1px -1px 4px rgba(236, 236, 243, .9)',
-        'box-shadow': 'inset 3px 3px 3px rgba(0, 0, 0, .4)'
+        'filter': 'drop-shadow(0 0 2px yellow)',
+        'filter': 'drop-shadow(0 0 4px yellow)',
+        'filter': 'drop-shadow(0 0 6px yellow)',
+        'filter': 'drop-shadow(0 0 8px yellow)',
+        'transform': 'scale(1.25)',
+        'animation': 'chooseStick 2.5s infinite linear'
       })
       // 其他人
       $('.stick01, .stick02, .stick03').css({
-        'background': 'rgba(255, 255, 255, 1)',
-        'box-shadow': 'inset 0 0 0 rgba(0, 0, 0, .4)',
-        'box-shadow': 'inset 0 0 0 rgba(236, 236, 243, .9)',
-        'box-shadow': '-1px -1px 4px rgba(236, 236, 243, .9)',
-        'box-shadow': '3px 3px 3px rgba(0, 0, 0, .4)'
+        'filter': 'drop-shadow(0 0 2px rgba(0, 0, 0, 0))',
+        'filter': 'drop-shadow(0 0 4px rgba(0, 0, 0, 0))',
+        'filter': 'drop-shadow(0 0 6px rgba(0, 0, 0, 0))',
+        'filter': 'drop-shadow(0 0 8px rgba(0, 0, 0, 0))',
+        'transform': 'scale(1)',
+        'animation': 'none'
       })
     })
 
