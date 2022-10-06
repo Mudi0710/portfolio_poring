@@ -100,9 +100,10 @@
       transform: translate(-50%, -50%);
       box-shadow: 0px 0px 100px 200px rgba(255, 255, 255, .6);
       z-index: 5;
-      /* display: none; */
+      display: none;
     }
 
+    /* 設定遊戲說明彈窗 header */
     #dialogHeader {
       width: 1200px;
       height: 40px;
@@ -114,6 +115,7 @@
       border-bottom: 2px solid rgb(105, 105, 105);
     }
 
+    /* 設定遊戲說明彈窗 body */
     #dialogBody {
       width: 1200px;
       height: 740px;
@@ -124,7 +126,6 @@
     #dialogContent {
       width: 90%;
       height: 100%;
-      /* background: black; */
       position: absolute;
       top: 50%;
       left: 50%;
@@ -139,6 +140,7 @@
       align-items: start;
     }
 
+    /* 設定遊戲說明彈窗 body - title */
     #dialogContent .title {
       width: 100%;
       margin: 10px 0px;
@@ -197,6 +199,7 @@
       transform: rotate(35deg);
     }
 
+    /* 設定遊戲說明彈窗 body - 內文邊框*/
     #dialogContent .borderDecoration {
       border-image-slice:
         27 27 27 27;
@@ -212,6 +215,18 @@
         solid;
     }
 
+    /* 設定遊戲說明彈窗 body - 內文文字*/
+    #dialogContent .text {
+      width: 100%;
+      margin-top: 10px;
+      line-height: 1.5rem;
+    }
+
+    #dialogContent h3 {
+      margin-bottom: 5px;
+    }
+
+    /* 設定遊戲說明彈窗 body - 角色介紹區*/
     #dialogContent .roleIntro {
       padding: 20px;
       display: flex;
@@ -226,6 +241,30 @@
       display: flex;
       justify-content: space-around;
       position: relative;
+    }
+
+    #dialogContent .male .roleShadow {
+      background: #CDD5E9;
+      width: 100px;
+      height: 30px;
+      border-radius: 50%;
+      position: absolute;
+      top: 260px;
+      left: 90px;
+      filter: blur(2px);
+      z-index: -1;
+    }
+
+    #dialogContent .female .roleShadow {
+      background: #CDD5E9;
+      width: 100px;
+      height: 30px;
+      border-radius: 50%;
+      position: absolute;
+      top: 260px;
+      left: 350px;
+      filter: blur(2px);
+      z-index: -1;
     }
 
 
@@ -271,13 +310,142 @@
       height: 300px;
     }
 
-    #dialogContent .text {
-      width: 100%;
-      margin-top: 10px;
-      line-height: 1.5rem;
-      display: block;
+    /* 設定遊戲說明彈窗 body - 武器介紹區*/
+    #dialogContent .stickIntro {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
     }
 
+    #dialogContent .stick {
+      width: 49.5%;
+      border: 2px solid rgba(0, 0, 0, .1);
+      padding: 10px;
+      display: flex;
+      justify-content: space-around;
+      position: relative;
+    }
+
+    #dialogContent .stick .stickShadow {
+      background: #CDD5E9;
+      width: 60px;
+      height: 20px;
+      border-radius: 50%;
+      position: absolute;
+      top: 90px;
+      left: 20px;
+      filter: blur(2px);
+      z-index: -1;
+    }
+
+    #dialogContent .stick:nth-child(3),
+    #dialogContent .stick:nth-child(4) {
+      margin-top: 10px;
+    }
+
+    #dialogContent .stickText {
+      width: 80%;
+      margin: 0px 5px;
+      background: rgba(100, 100, 100, .1);
+      line-height: 1.5rem;
+      padding: 10px;
+    }
+
+    /* 設定遊戲說明彈窗 body - 魔物介紹區*/
+    #dialogContent .monsterIntro {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    #dialogContent .monster {
+      width: 24%;
+      border: 2px solid rgba(0, 0, 0, .1);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #dialogContent .monsterName {
+      width: 100%;
+      text-align: center;
+      background: rgba(100, 100, 100, .1);
+    }
+
+    #dialogContent .monsterPhoto {
+      width: 100%;
+      height: 100%;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: center;
+      position: relative;
+    }
+
+    #dialogContent .monsterPhoto .monsterShadow {
+      background: #CDD5E9;
+      width: 80px;
+      height: 20px;
+      border-radius: 50%;
+      position: absolute;
+      top: 185px;
+      left: 70px;
+      filter: blur(2px);
+      z-index: -1;
+    }
+
+    #dialogContent .poring {
+      width: 75px;
+      height: 75px;
+    }
+
+    #dialogContent .angelporing {
+      width: 65px;
+      height: 50px;
+      opacity: 0;
+      animation: invisibleM 5s linear infinite;
+    }
+
+    @keyframes invisibleM {
+      0% {
+        opacity: 0;
+      }
+
+      40% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    #dialogContent .devilporing {
+      width: 160px;
+      height: 80px;
+    }
+
+    #dialogContent .kingporing {
+      width: 200px;
+      height: 200px;
+    }
+
+    #dialogContent .monsterText {
+      width: 100%;
+      background: rgba(100, 100, 100, .1);
+      padding: 10px;
+      text-align: justify;
+      line-height: 1.5rem;
+    }
+
+    #dialogContent .monsterText ul {
+      margin-top: 5px;
+    }
+
+    /* 設定遊戲說明彈窗 footer */
     #dialogFooter {
       width: 1200px;
       height: 70px;
@@ -656,9 +824,9 @@
 <body>
   <div id='help'>
     <div class="icon">
-      遊戲說明
+      獵殺須知
     </div>
-    <!-- <audio id="music" src="./music/streamside.mp3" autoplay loop controls preload="metadata"></audio> -->
+    <audio id="music" src="./music/streamside.mp3" autoplay loop controls preload="metadata"></audio>
   </div>
   <div id="dialog">
     <div id="dialogHeader"></div>
@@ -674,14 +842,17 @@
           </div>
           <h1>角色介紹</h1>
         </div>
+        <!-- 角色介紹內文 -->
         <div class="roleIntro borderDecoration">
           <div class="male">
+            <div class="roleShadow"></div>
             <p class="maleWord01">火柱</p>
             <p class="maleWord02">攻擊</p>
             <img src="./images/magician01.png" alt="男魔法師">
             <img class="fireIntro" src="./images/fire_BGclear.gif" alt="火柱攻擊">
           </div>
           <div class="female">
+            <div class="roleShadow"></div>
             <p class="femaleWord">雷擊術</p>
             <img class="flashIntro" src="./images/flash_BGclear.gif" alt="雷擊術">
             <img src="./images/magician02.png" alt="女魔法師">
@@ -702,13 +873,127 @@
           </div>
           <h1>武器介紹</h1>
         </div>
-
+        <!-- 武器介紹內文 -->
+        <div class="stickIntro borderDecoration">
+          <div class="stick">
+            <div class="stickShadow"></div>
+            <img src="./images/stick01.png" alt="手杖" title="手杖">
+            <div class="stickText">
+              <h3>手杖</h3>
+              <ul>
+                <li>輕巧又短小的手杖。</li>
+                <li class="blue">初心者不容錯過的經典武器。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="stick">
+            <div class="stickShadow"></div>
+            <img src="./images/stick02.png" alt="慈悲法杖" title="慈悲法杖">
+            <div class="stickText">
+              <h3>慈悲法杖</h3>
+              <ul>
+                <li>蘊含著慈悲之光的法杖。</li>
+                <li class="blue">擁有驅散一切邪惡的力量！</li>
+              </ul>
+            </div>
+          </div>
+          <div class="stick">
+            <div class="stickShadow"></div>
+            <img src="./images/stick03.png" alt="骷髏魔杖" title="骷髏魔杖">
+            <div class="stickText">
+              <h3>骷髏魔杖</h3>
+              <ul>
+                <li>蘊含邪惡氣息的手杖。</li>
+                <li class="blue">真正強者才能擁有的強大裝備！</li>
+              </ul>
+            </div>
+          </div>
+          <div class="stick">
+            <div class="stickShadow"></div>
+            <img src="./images/stick04.png" alt="魔力狐尾草手杖" title="魔力狐尾草">
+            <div class="stickText">
+              <h3>魔力狐尾草手杖</h3>
+              <ul>
+                <li>感受到蜻蜓和狐尾草奇妙魔力的草。</li>
+                <li class="blue">萌萌喵族的專屬裝備，敲級可愛！</li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <!-- 魔物介紹 -->
         <div class="title">
           <div class="circle">
             <div class="star"></div>
           </div>
           <h1>魔物介紹</h1>
+        </div>
+        <!-- 魔物介紹內文 -->
+        <div class="monsterIntro borderDecoration">
+          <div class="monster">
+            <div class="monsterName">
+              <h3>波利</h3>
+            </div>
+            <div class="monsterPhoto">
+              <div class="monsterShadow"></div>
+              <img class="poring" src="./images/poring.gif" alt="波利" title="波利">
+            </div>
+            <div class="monsterText">
+              <p>經典的可愛萌物代表，但千萬不要小看牠！</p>
+              <ul>
+                <li><span class="blue">獵殺難易：</span>低</li>
+                <li><span class="blue">獵殺分數：</span>1</li>
+              </ul>
+            </div>
+          </div>
+          <div class="monster">
+            <div class="monsterName">
+              <h3>天使波利</h3>
+            </div>
+            <div class="monsterPhoto">
+              <div class="monsterShadow"></div>
+              <img class="angelporing" src="./images/angeling.gif" alt="天使波利" title="天使波利">
+            </div>
+            <div class="monsterText">
+              <p>如精靈般化身的天使波利，擅長隱身保護瘦小的身軀。</p>
+              <ul>
+                <li><span class="blue">獵殺難易：</span>普通</li>
+                <li><span class="blue">獵殺分數：</span>2</li>
+              </ul>
+            </div>
+          </div>
+          <div class="monster">
+            <div class="monsterName">
+              <h3>惡魔波利</h3>
+            </div>
+            <div class="monsterPhoto">
+              <div class="monsterShadow"></div>
+              <img class="devilporing" src="./images/deviling.gif" alt="惡魔波利" title="惡魔波利">
+            </div>
+            <div class="monsterText">
+              <p>沾染邪惡氣息的黑化波利，靠神聖的力量制服牠吧！</p>
+              <ul>
+                <li><span class="blue">獵殺難易：</span>中</li>
+                <li><span class="blue">獵殺分數：</span>2</li>
+              </ul>
+            </div>
+          </div>
+          <div class="monster">
+            <div class="monsterName">
+              <h3>國王波利</h3>
+            </div>
+            <div class="monsterPhoto">
+              <div class="monsterShadow"></div>
+              <img class="kingporing" src="./images/king_poring.gif" alt="國王波利" title="國王波利">
+            </div>
+            <div class="monsterText">
+              <p>皮厚肉多的國王波利，需要耐心與毅力才能獵殺成功。</p>
+              <ul>
+                <li><span class="blue">獵殺難易：</span>高</li>
+                <li><span class="blue">獵殺分數：</span>5</li>
+              </ul>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
@@ -891,18 +1176,18 @@
     let kill = 0
     $('#game').on('click', '.kingporing', function () {
       kill++
-      if (kill >= 2) {
+      if (kill >= 3) {
         $(this).attr('src', './images/king_poringDIEonce.gif')
         $(this).removeClass('kingporing').addClass('kingporingDIE')
         $('.kingporingDIE').stop()
-        control += 3
+        control += 5
         $('.kingporingDIE').addClass('kingporingDIEpic')
         if (control >= score) {
           kingporingtimer = setInterval(function () {
             $('.kingporingDIEpic').attr('src', './images/king_poringDIEpic.png')
           }, 1000)
         }
-        score += 3
+        score += 5
         $('#text-score').text(score)
         kill = 0
       }
@@ -938,7 +1223,7 @@
             $('.devilporingDIEpic').attr('src', './images/devilingDIEpic.png')
           }, 1000)
         }
-        score++
+        score += 2
         $('#text-score').text(score)
       }
     })
@@ -948,14 +1233,14 @@
       $(this).attr('src', './images/poringDIEonce.gif')
       $(this).removeClass('poring').addClass('poringDIE')
       $('.poringDIE').stop()
-      control += 2
+      control++
       $('.poringDIE').addClass('poringDIEpic')
       if (control >= score) {
         poringtimer = setInterval(function () {
           $('.poringDIEpic').attr('src', './images/poringDIEpic.png')
         }, 1000)
       }
-      score += 2
+      score++
       $('#text-score').text(score)
     })
 
