@@ -28,6 +28,14 @@
       margin-top: 5px;
     }
 
+    ul li {
+      list-style-position: inside;
+    }
+
+    .blue {
+      color: blue !important;
+    }
+
     /* 設定幫助區 */
     #help {
       width: 1540px;
@@ -92,7 +100,7 @@
       transform: translate(-50%, -50%);
       box-shadow: 0px 0px 100px 200px rgba(255, 255, 255, .6);
       z-index: 5;
-      display: none;
+      /* display: none; */
     }
 
     #dialogHeader {
@@ -121,40 +129,160 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+    }
+
+    #dialogContent .logo {
+      width: 100%;
+      margin-top: 15px;
       display: flex;
       justify-content: center;
       align-items: start;
     }
 
-    #dialogContent .logo {
+    #dialogContent .title {
+      width: 100%;
+      margin: 10px 0px;
+      padding: 3px;
+      background: linear-gradient(90deg, rgb(238, 208, 252), rgb(229, 227, 253), rgb(221, 247, 254));
+      border-radius: 10px;
+      display: flex;
+    }
+
+    #dialogContent .circle {
+      width: 40px;
+      height: 40px;
+      background: rgb(80, 80, 80);
+      border: 3px solid white;
+      border-radius: 50%;
+      box-shadow: 0px 0px 2px black;
+      margin: 2px 5px 0px 5px;
+      position: relative;
+    }
+
+    #dialogContent .star {
+      width: 0px;
+      height: 0px;
+      border-style: solid;
+      border-color: transparent transparent rgb(255, 255, 255) transparent;
+      border-width: 15px 5px;
+      position: absolute;
+      top: -14px;
+      left: 12.5px;
+      position: relative;
+    }
+
+    #dialogContent .star::before {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-color: transparent transparent rgb(255, 255, 255) transparent;
+      border-width: 11px 15px;
+      position: absolute;
+      top: 0px;
+      left: -19px;
+      transform: rotate(-35deg);
+    }
+
+    #dialogContent .star::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-color: transparent transparent rgb(255, 255, 255) transparent;
+      border-width: 11px 15px;
+      position: absolute;
+      top: 0px;
+      right: -19px;
+      transform: rotate(35deg);
+    }
+
+    #dialogContent .borderDecoration {
+      border-image-slice:
+        27 27 27 27;
+      border-image-width:
+        20px 20px 20px 20px;
+      border-image-outset:
+        0px 0px 0px 0px;
+      border-image-repeat:
+        stretch stretch;
+      border-image-source:
+        url("data:image/png;base64,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");
+      border-style:
+        solid;
+    }
+
+    #dialogContent .roleIntro {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    #dialogContent .male,
+    #dialogContent .female {
+      width: 49.5%;
+      border: 2px solid rgba(0, 0, 0, .1);
+      display: flex;
+      justify-content: space-around;
+      position: relative;
+    }
+
+
+    #dialogContent .maleWord01 {
+      font-size: 100px;
+      font-weight: 900;
+      color: rgba(105, 105, 105, 0.2);
+      position: absolute;
+      top: 15px;
+      right: 100px;
+      z-index: -1;
+    }
+
+    #dialogContent .maleWord02 {
+      font-size: 100px;
+      font-weight: 900;
+      color: rgba(105, 105, 105, 0.2);
+      position: absolute;
+      top: 145px;
+      right: 20px;
+      z-index: -1;
+    }
+
+    #dialogContent .femaleWord {
+      font-size: 100px;
+      font-weight: 900;
+      color: rgba(105, 105, 105, 0.2);
+      position: absolute;
+      transform: rotate(-15deg);
+      top: 30px;
+      left: 10px;
+      z-index: -1;
+    }
+
+    #dialogContent .fireIntro {
+      width: 200px;
+      height: 200px;
+      margin-top: auto;
+    }
+
+    #dialogContent .flashIntro {
+      width: 180px;
+      height: 300px;
+    }
+
+    #dialogContent .text {
+      width: 100%;
       margin-top: 10px;
+      line-height: 1.5rem;
+      display: block;
     }
 
     #dialogFooter {
       width: 1200px;
       height: 70px;
-      background: linear-gradient(0deg,
-          rgba(255, 255, 255, 1) 0%,
-          rgba(235, 235, 235, 1) 5%,
-          rgba(255, 255, 255, 1) 10%,
-          rgba(235, 235, 235, 1) 15%,
-          rgba(255, 255, 255, 1) 20%,
-          rgba(235, 235, 235, 1) 25%,
-          rgba(255, 255, 255, 1) 30%,
-          rgba(235, 235, 235, 1) 35%,
-          rgba(255, 255, 255, 1) 40%,
-          rgba(235, 235, 235, 1) 45%,
-          rgba(255, 255, 255, 1) 50%,
-          rgba(235, 235, 235, 1) 55%,
-          rgba(255, 255, 255, 1) 60%,
-          rgba(235, 235, 235, 1) 65%,
-          rgba(255, 255, 255, 1) 70%,
-          rgba(235, 235, 235, 1) 75%,
-          rgba(255, 255, 255, 1) 80%,
-          rgba(235, 235, 235, 1) 85%,
-          rgba(255, 255, 255, 1) 90%,
-          rgba(235, 235, 235, 1) 95%,
-          rgba(255, 255, 255, 1) 100%);
+      background:
+        repeating-linear-gradient(0deg, transparent 0px 3px, rgb(235, 235, 235) 3px 6px) rgb(255, 255, 255);
       border-radius: 0% 0% 15px 15px / 0% 0% 15px 15px;
       border-top: 2px solid rgb(211, 211, 211);
       text-align: center;
@@ -530,13 +658,58 @@
     <div class="icon">
       遊戲說明
     </div>
-    <audio id="music" src="./music/streamside.mp3" autoplay loop controls preload="metadata"></audio>
+    <!-- <audio id="music" src="./music/streamside.mp3" autoplay loop controls preload="metadata"></audio> -->
   </div>
   <div id="dialog">
     <div id="dialogHeader"></div>
     <div id="dialogBody">
       <div id="dialogContent">
-        <img class="logo" src="./images/ro_logo01.png" alt="Logo">
+        <div class="logo">
+          <img src="./images/ro_logo01.png" alt="Logo">
+        </div>
+        <!-- 角色介紹 -->
+        <div class="title">
+          <div class="circle">
+            <div class="star"></div>
+          </div>
+          <h1>角色介紹</h1>
+        </div>
+        <div class="roleIntro borderDecoration">
+          <div class="male">
+            <p class="maleWord01">火柱</p>
+            <p class="maleWord02">攻擊</p>
+            <img src="./images/magician01.png" alt="男魔法師">
+            <img class="fireIntro" src="./images/fire_BGclear.gif" alt="火柱攻擊">
+          </div>
+          <div class="female">
+            <p class="femaleWord">雷擊術</p>
+            <img class="flashIntro" src="./images/flash_BGclear.gif" alt="雷擊術">
+            <img src="./images/magician02.png" alt="女魔法師">
+          </div>
+          <div class="text">
+            <h3>魔法師</h3>
+            <ul>
+              <li><span class="blue">選擇不同角色可以施展不同屬性的魔法技能</span>，並在短時間施展強大的法術擊倒敵人！</li>
+              <li>虛弱的體質是魔法師最大的致命傷，在戰鬥的時候要記得保護好自己唷！</li>
+              <li>初期等級相當難練，但到了後期，強力的魔法會成為隊伍中的主力攻擊。</li>
+            </ul>
+          </div>
+        </div>
+        <!-- 武器介紹 -->
+        <div class="title">
+          <div class="circle">
+            <div class="star"></div>
+          </div>
+          <h1>武器介紹</h1>
+        </div>
+
+        <!-- 魔物介紹 -->
+        <div class="title">
+          <div class="circle">
+            <div class="star"></div>
+          </div>
+          <h1>魔物介紹</h1>
+        </div>
       </div>
     </div>
     <div id="dialogFooter">
